@@ -1,28 +1,26 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
+import { Joke } from './Joke';
+import { jokes } from './jokes.js';
 
 const App = () => {
   return (
     <div className="container">
-      <header>
-        <div className="logo" />
-        <h1>React webová aplikace</h1>
-      </header>
-      <main>
-        <p>
-          Startovací šablona pro webovou aplikaci v Reactu. Vytvořeno pomocí
-          <a href="https://www.npmjs.com/package/create-czechitas-app">create-czechitas-app</a>
-          .
-        </p>
-      </main>
-      <footer>
-        <p>Czechitas, Digitální akademie: Web</p>
-      </footer>
+      {jokes.map((jokes) => {
+        return (
+          <Joke
+            userAvatar={jokes.avatar}
+            userName={jokes.name}
+            text={jokes.text}
+            likes={jokes.likes}
+            dislikes={jokes.dislikes}
+            key={jokes.id}
+          />
+        );
+      })}
     </div>
   );
 };
 
-createRoot(
-  document.querySelector('#app'),
-).render(<App />);
+createRoot(document.querySelector('#app')).render(<App />);
