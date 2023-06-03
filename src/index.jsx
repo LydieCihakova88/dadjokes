@@ -2,23 +2,21 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
 import { Joke } from './Joke';
-import { jokes } from './jokes.js';
+import { jokes } from './joke.js';
 
 const App = () => {
   return (
     <div className="container">
-      {jokes.map((jokes) => {
-        return (
-          <Joke
-            userAvatar={jokes.avatar}
-            userName={jokes.name}
-            text={jokes.text}
-            likes={jokes.likes}
-            dislikes={jokes.dislikes}
-            key={jokes.id}
-          />
-        );
-      })}
+      {jokes.map(({ id, avatar, name, text, likes, dislikes }) => (
+        <Joke
+          key={id}
+          userAvatar={avatar}
+          userName={name}
+          text={text}
+          likes={likes}
+          dislikes={dislikes}
+        />
+      ))}
     </div>
   );
 };
